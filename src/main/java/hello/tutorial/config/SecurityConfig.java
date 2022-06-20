@@ -37,16 +37,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 
 	@Override
-	public void configure(WebSecurity web) throws Exception {
-		web
-				.ignoring()
-				.antMatchers("/h2-console/**",
-						"/favicon.ico");
+	public void configure(WebSecurity web) {
+		web.ignoring()
+				.antMatchers(
+						"/h2-console/**"
+						, "/favicon.ico"
+						, "/error"
+				);
 	}
 
 	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-		http
+	protected void configure(HttpSecurity httpSecurity) throws Exception {
+		httpSecurity
 				.csrf().disable()
 
 				.exceptionHandling()
@@ -63,7 +65,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 
 				.and()
-				.authorizeHttpRequests()
+				.authorizeRequests()
 				.antMatchers("/api/hello").permitAll()
 				.antMatchers("/api/authenticate").permitAll()
 				.antMatchers("/api/signup").permitAll()
