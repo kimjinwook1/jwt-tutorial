@@ -41,11 +41,17 @@ public class UserService {
 	}
 
 	public UserDto getUserWithAuthorities(String username) {
-		return UserDto.from(userRepository.findOneWithAuthoritiesByUsername(username).orElse(null));
+		return UserDto
+				.from(userRepository.findOneWithAuthoritiesByUsername(username)
+						.orElse(null));
 	}
 
 	public UserDto getMyUserWithAuthorities() {
 
-		return UserDto.from(SecurityUtil.getCurrentUsername().flatMap(userRepository::findOneWithAuthoritiesByUsername).orElse(null));
+		return UserDto
+				.from(SecurityUtil
+						.getCurrentUsername()
+						.flatMap(userRepository::findOneWithAuthoritiesByUsername)
+						.orElse(null));
 	}
 }
