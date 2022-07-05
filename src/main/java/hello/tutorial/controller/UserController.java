@@ -36,5 +36,10 @@ public class UserController {
 	public ResponseEntity<UserDto> getUserInfo(@PathVariable("username") String username) {
 		return ResponseEntity.ok(userService.getUserWithAuthorities(username));
 	}
+
+	@PostMapping("/test")
+	public void test() {
+		userService.test();
+	}
 }
 
