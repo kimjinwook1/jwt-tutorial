@@ -1,5 +1,6 @@
 package hello.tutorial.Atest;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
@@ -31,6 +32,7 @@ public class Member {
 	private String createdBy;
 
 	@LastModifiedBy
+	@Column(insertable = false)
 	private String lastModifiedBy;
 
 	public Member(String name) {
